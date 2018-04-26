@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to your dashboard, {{ current }}</h1>
+    <h1>{{check}}</h1>
+
+    <h2>My trip Schedules</h2>
+    <table>
+        <tr>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel end Date</th>
+            <th>Plan</th>
+        </tr>
+
+        {% for trip in trips %}
+        {% if trip.users_id == current_id %}
+        <tr>
+            <td>{{ trip.destination }}</td>
+            <td>{{ trip.start_date }}</td>
+            <td>{{ trip.end_date }}</td>
+            <td>{{ trip.plan }}</td>
+        </tr>
+        {% for trip in usertrips %}
+            <tr>
+                <td>{{ trip.destination }}</td>
+                <td>{{ trip.start_date }}</td>
+                <td>{{ trip.end_date }}</td>
+                <td>{{ trip.plan }}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+    </table>
+
+    <h2>Other User's Travel Plans</h2>
+
+    <table>
+            <tr>
+                <th>Name</th>
+                <th>Destination</th>
+                <th>Travel Start Date</th>
+                <th>Travel end Date</th>
+                <th>Plan</th>
+                <th>Do You Want to Join?</th>
+            </tr>
+
+            {% for trip in trips2 %}
+            
+            <tr>
+                <td><a href="/details/{{trip.id}}">{{ trip.users.name }}</td></a>
+                <td>{{ trip.destination }}</td>
+                <td>{{ trip.start_date }}</td>
+                <td>{{ trip.end_date }}</td>
+                <td>{{ trip.plan }}</td>
+                <td><a href="/letsgo/{{trip.id}}">Join</a></td>
+            </tr>
+
+            {% endfor %}
+    
+        </table>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages%}
+            <li
+            
+                {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="/logout"><button>Logout</button></a></a>
+
+    <a href="/travel"><button>Add a travel</button></a>
+</body>
+</html>

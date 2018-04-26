@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Details</title>
+</head>
+<body>
+    <h1>These are the details!!!</h1>
+
+    <h3>{{ test.destination }}</h3>
+    <p>Planned By: {{ test.users.name }}</p>
+    <p>Travel Date From: {{ test.start_date }}</p>
+    <p>Travel Date To: {{ test.end_date }}</p>
+    <p>Description: {{ test.plan }}</p>
+
+    <h2>Other Users Joining This Trip:</h2>
+    {% for x in jeez2 %}
+    <p>{{x.name}}</p>
+    {% endfor %}
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <a href="/home"><button>Home</button></a>
+</body>
+</html>
